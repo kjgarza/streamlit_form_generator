@@ -1,5 +1,5 @@
-datamodel-code-generator==0.13.1
+datamodel-code-generator==0.26.1
 httpx==0.22.0
-pydantic==1.8.2
-streamlit==1.12.2
-streamlit-pydantic==0.5.0
+pydantic==1.10.11
+streamlit==1.39.0
+streamlit-pydantic==0.6.0

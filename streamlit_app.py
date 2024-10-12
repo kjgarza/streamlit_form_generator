@@ -25,12 +25,12 @@ input_method = st.radio(
 st.subheader(input_method)
 
 
-@st.experimental_memo
+# @st.experimental_memo
 def decode_uploaded_file(oas_file: UploadedFile) -> str:
     return oas_file.read().decode()
 
 
-@st.experimental_memo
+# @st.experimental_memo
 def decode_text_from_url(oas_url: str) -> str:
     try:
         response = httpx.get(oas_url, follow_redirects=True, timeout=10)
@@ -95,7 +95,7 @@ class ModuleWithClasses:
     classes: List[str]
 
 
-@st.experimental_memo()
+# @st.experimental_memo()
 def parse_into_modules(raw_oas: str) -> List[ModuleWithClasses]:
     with TemporaryDirectory() as temporary_directory_name:
         temporary_directory = Path(temporary_directory_name)
@@ -163,14 +163,14 @@ for module in modules:
         all_module_models.append((module.name, model_name))
 
 
-if len(all_module_models) > 1:
-    selections = st.multiselect(
-        label="Select Models that will be Form Inputs",
-        options=all_module_models,
-        default=all_module_models[0],
-        format_func=lambda x: f"{x[0]}.{x[1]}",
-    )
-else:
+# if len(all_module_models) > 1:
+#     selections = st.multiselect(
+#         label="Select Models that will be Form Inputs",
+#         options=all_module_models,
+#         default=all_module_models[0],
+#         format_func=lambda x: f"{x[0]}.{x[1]}",
+#     )
+# else:
     selections = list(all_module_models)
 
 
@@ -225,7 +225,7 @@ st.json(input_data.json())
 """
 
 
-@st.experimental_memo
+# @st.experimental_memo
 def generate_streamlit_code(selected_module_models: List[Tuple[str, str]]) -> str:
     streamlit_code = generate_header(selected_module_models)
     if len(selected_module_models) == 1:
@@ -242,7 +242,7 @@ with st.expander("Show Generated Streamlit App Code", True):
     st.code(body=streamlit_code, language="python")
 
 
-@st.experimental_memo()
+# @st.experimental_memo()
 def zip_generated_code(modules: List[ModuleWithClasses], streamlit_code: str) -> bytes:
     with TemporaryDirectory() as temporary_directory_name:
         temporary_directory = Path(temporary_directory_name)
